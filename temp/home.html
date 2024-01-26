@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div>
+        {% if user.is_authenticated %}
+            <h2>Welcome {{ user.username }}</h2>
+            <a href="{% url 'logout' %}">Log out</a>
+            <br>
+            <br>
+            <div>
+                <h5><a href="http://127.0.0.1:8000/article/new/">New Post</a></h3>
+                <br>
+                <h5><a href="http://127.0.0.1:8000/article/">All Posts</a></h3>
+            </div>
+        {% else %}
+            <h2>Dear user, you are not logged in!</h2>
+            <p>Please, login or signin.</p>
+            <a href="{% url 'login' %}">Log in</a>
+            <a href="{% url 'signin' %}">Sign in</a>
+        {% endif %}
+    </div>
+
+{% endblock content %}

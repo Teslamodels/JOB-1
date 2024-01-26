@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div style="text-align: center;">
+        {% for article in object_list %}
+            <h2><a href="{% url 'detail' article.pk %}">{{ article.title }}</a></h2>
+            <br>
+            {% if article.photo %}
+                <img style="border-radius: 10px;" src="{{ article.photo.url }}" alt="{{ article.title }}">
+            {% endif %}
+            <br>
+            <br>
+            <h4><a href="{% url 'detail' article.pk %}"></a></h4>
+            <p>from {{ article.author }}</p>
+            <p>{{ article.date }}</p>
+            <br>
+            <br>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div style="text-align: center;">
+        <h2>{{ object.title }}</h2>
+        <br>
+        {% if object.photo %}
+            <img style="border-radius: 10px;" src="{{ object.photo.url }}" alt="{{ object.title }}">
+        {% endif %}
+        <br>
+        <br>
+        <p>{{ object.body | safe}}</p>
+        <h4>{{ object.summary }}</h4>
+        <p>{{ object.date }}</p>
+        <p>{{ object.author }}</p>
+
+        <div>
+            <a href="{% url 'update' article.pk %}">Edit</a>
+            <a href="{% url 'delete' article.pk %}">Delete</a>
+            <a href="{% url 'article' %}">All Posts</a>
+
+            <br>
+            <br>
+
+            <div>
+                {% for comment in article.comments.all %}
+                    <h5>from {{ comment.author }}</h5>
+                    <h5>{{ comment }}</h5>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
